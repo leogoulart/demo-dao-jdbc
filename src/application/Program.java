@@ -1,5 +1,6 @@
 package application;
 
+import java.util.Date;
 import java.util.List;
 
 import model.dao.DaoFactory;
@@ -9,7 +10,19 @@ import model.entities.Seller;
 
 public class Program {
 
+	/*public static int comand;
+	public static String setName;
+	public static String SetEmail;
+	public static double setSalary;
+	public static Date setBirthDate;
+	public static Department setDep;*/
+	
+	public Program() {
+	}
+	
 	public static void main(String[] args) {
+		
+		//Scanner sc = new Scanner(System.in);
 		
 		System.out.println("=== Test 1: FindById ===");
 		SellerDao sellerDao = DaoFactory.createSellerDao();
@@ -30,6 +43,35 @@ public class Program {
 			System.out.println(sellerAll);
 		}
 		
+		System.out.println("\n\n=== Test 4: Insert Value ===");
+		Seller sellerInsert = new Seller(null, "Greg", "greg@gmail.com", new Date(), 1200.0, dep);
+		sellerDao.insert(sellerInsert);
+		System.out.println("Inserted! new seller Id: " + sellerInsert.getId());
+		
+		System.out.println("\n\n=== Test 5: Update Value ===");
+		seller = sellerDao.findById(2);
+		seller.setName("Josh Ackerman");
+		sellerDao.update(seller);
+		System.out.println("Updated! Seller Info Updated");
+		
+/*		
+		System.out.println("\n\n=== Test 4: Insert Value 2 ===");
+		System.out.print("Insira o nome do novo funcionario: ");
+		setName = sc.next();
+		System.out.print("Insira o email do funcionario: ");
+		SetEmail = sc.next();
+		setBirthDate = new Date();
+		System.out.print("Insira o salario do funcionario: ");
+		setSalary = sc.nextDouble();
+		setDep = dep;
+		
+		Seller sellerInsert2 = new Seller(null, setName, SetEmail, setBirthDate, setSalary, setDep);
+		sellerDao.insert(sellerInsert2);
+		System.out.println("Inserted! new seller Id: " + sellerInsert2.getId());
+		
+		sc.close();
+		
+		*/
 	}
 	
 }
